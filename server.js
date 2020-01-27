@@ -10,7 +10,8 @@ connectDB();
 app.get('/', (req, res) => {
   res.send('API is running');
 });
-
+//middleware
+app.use(express.json({ extended: false }));
 //Our Defined Route
 app.use('/api/user', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
