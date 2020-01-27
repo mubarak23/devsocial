@@ -11,7 +11,10 @@ app.get('/', (req, res) => {
   res.send('API is running');
 });
 //middleware
-app.use(express.json({ extended: false }));
+//setup the middlware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+//app.use(cookieParse());
 //Our Defined Route
 app.use('/api/user', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
