@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb://root:root123@ds263848.mlab.com:63848/zone",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "547bf6ae7969bb8f37db",
+  "githubSecret": "bf03231d21cbd1b3f6d7c63d114579d9aac1ba0f"
 }
