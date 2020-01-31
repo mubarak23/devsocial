@@ -49,4 +49,14 @@ router.post(
   }
 );
 
+router.get('/', auth, async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ date: -1 });
+    return res.status(200).json(post);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send('server error');
+  }
+});
+
 module.exports = router;
