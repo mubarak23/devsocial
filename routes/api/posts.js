@@ -49,13 +49,58 @@ router.post(
   }
 );
 
+// @route    get api/posts
+// @desc     pull all posts
+// @access   Private
 router.get('/', auth, async (req, res) => {
   try {
     const posts = await Post.find().sort({ date: -1 });
+    return res.status(200).json(posts);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send('server error');
+  }
+});
+
+// @route    get api/posts
+// @desc     get a post base on :id
+// @access   Private
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const post = await findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({
+        message: 'No Post found'
+      });
+    }
     return res.status(200).json(post);
   } catch (error) {
     console.log(error.message);
     return res.status(500).send('server error');
+  }
+});
+// @route    DELETE api/posts
+// @desc    Single post base on /:id
+// @access   Private
+router.delete('/:id', async (req, res) => {
+  try {
+    const post = Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({
+        message: 'No Post found'
+      });
+    }
+    if (post.user.toString() != req.user.id) {
+      return res.status(404).json({
+        message: 'Unauthorize User'
+      });
+    }
+    await post.remove();
+  } catch (error) {
+    console.log(error.message);
+    if (error.kind === 'ObjectId') {
+      return res.status(404).json({ message: 'post is not fount' });
+    }
   }
 });
 
