@@ -79,6 +79,7 @@ router.get('/:id', auth, async (req, res) => {
     return res.status(500).send('server error');
   }
 });
+
 // @route    DELETE api/posts
 // @desc    Single post base on /:id
 // @access   Private
@@ -101,6 +102,54 @@ router.delete('/:id', async (req, res) => {
     if (error.kind === 'ObjectId') {
       return res.status(404).json({ message: 'post is not fount' });
     }
+    return res.status(500).send('Server error');
+  }
+});
+
+// @route    DELETE api/posts/like/:id
+// @desc    like post
+// @access   Private
+
+router.put('/like/:id', auth, async (req, res) => {
+  try {
+    const post = findById(req.params.id);
+    if (
+      post.likes.filter(like => like.user.toString() === req.user.id).length > 0
+    ) {
+      return res.status(400).json({ msg: 'post already like' });
+    }
+    post.likes.unshift({ user: req.user.id });
+    await post.save();
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send('Server Error');
+  }
+});
+
+// @route    DELETE api/posts/unlike/:id
+// @desc    unlike post
+// @access   Private
+router.put('/unlike/:id', auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (
+      post.likes.filter(like => like.user.toString() === req.user.id).length ===
+      0
+    ) {
+      return res.status(400).json({ msg: 'Post has not yet been like' });
+    }
+    //const removeIndex = post.likes.map.(like => like.user.toString()).indexOf(req.user.id);
+    const removeIndex = post.likes
+      .map(like => like.user.toString())
+      .indexOf(req.user.id);
+
+      post.likes.splice(removeIndex, 1);
+      await post.save();
+      return res.status(200).json(post.like);
+    
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send('Server error');
   }
 });
 
