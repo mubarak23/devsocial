@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className='navbar bg-dark'>
@@ -14,10 +14,10 @@ const Navbar = () => {
           <a href='profiles.html'>Developer</a>
         </li>
         <li>
-          <a href='register.html'>Register</a>
+          <Link to='/register'>Register</Link>
         </li>
         <li>
-          <a href='login.html'>Login</a>
+          <Link to='/login'>Login</Link>
         </li>
       </ul>
     </nav>
