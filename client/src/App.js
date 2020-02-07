@@ -4,11 +4,11 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Alert from './components/layout/Alert';
+//import Alert from './components/layout/Alert';
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
-import setAuthToken from './utils/seetAuthToken';
+import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 if (localStorage.token) {
@@ -25,11 +25,11 @@ const App = () => {
           <Fragment>
             <Navbar />
             <Route exact path='/' components={Landing} />
-            <Alert />
+
             <section className='container'>
               <Switch>
-                <Route path='/register' components={Register} />
-                <Route path='/login' components={Login} />
+                <Route path='/register' component={Register} />
+                <Route path='/login' component={Login} />
               </Switch>
             </section>
           </Fragment>
