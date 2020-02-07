@@ -41,7 +41,7 @@ const Login = ({ login, isAuthenticated }) => {
               required
             />
           </div>
-          <div>
+          <div className='form-group'>
             <input
               type='password'
               placeholder='Account Password'
