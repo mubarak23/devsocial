@@ -11,11 +11,11 @@ const Login = ({ login, isAuthenticated }) => {
   });
   const { email, password } = formData;
 
-  const onChange = event => {
-    setFormData({ ...formData, [event.target.name]: event.target.name });
+  const onChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const onSubmit = async event => {
-    event.preventDefault();
+  const onSubmit = async e => {
+    e.preventDefault();
     //console.log('success');
     login(email, password);
   };
@@ -37,7 +37,7 @@ const Login = ({ login, isAuthenticated }) => {
               placeholder='Email Address'
               name='email'
               value={email}
-              onChange={event => onChange(event)}
+              onChange={e => onChange(e)}
               required
             />
           </div>
@@ -47,7 +47,7 @@ const Login = ({ login, isAuthenticated }) => {
               placeholder='Account Password'
               name='password'
               value={password}
-              onChange={event => onChange(event)}
+              onChange={e => onChange(e)}
               required
             />
           </div>

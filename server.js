@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 
 const app = express();
@@ -12,9 +13,10 @@ app.get('/', (req, res) => {
 });
 //middleware
 //setup the middlware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 //app.use(cookieParse());
+//app.use(express.json({ extended: false }));
 //Our Defined Route
 app.use('/api/user', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
