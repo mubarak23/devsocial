@@ -65,25 +65,32 @@ export const register = ({ name, email, password }) => async dispatch => {
 export const login = (email, password) => async dispatch => {
   const config = {
     headers: {
-      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json'
     }
   };
+
   const body = JSON.stringify({ email, password });
+
   try {
-    const res = axios.post('http://localhost:5000/api/auth', body, config);
-    console.log(res);
+    const res = await axios.post(
+      'http://localhost:5000/api/auth',
+      body,
+      config
+    );
+
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.token
+      payload: res.data
     });
+
     dispatch(loadUser());
   } catch (err) {
-    //return err;
-    //const errors = err.response.data.errors;
-    //if (err) {
-    // err.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-    // }
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+
     dispatch({
       type: LOGIN_FAIL
     });
@@ -94,4 +101,3 @@ export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
   dispatch({ type: CLEAR_PROFILE });
 };
-
