@@ -74,3 +74,29 @@ export const addexperience = (formData, history) => async dispatch => {
     });
   }
 };
+
+export const addEducation = (formData, history) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-type': 'Application/json'
+      }
+    };
+    const res = await axios.post('/api/profile/education', formData, config);
+    dispatch({
+      type: UPDATEPROFILE,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Education Added'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
