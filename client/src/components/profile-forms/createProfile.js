@@ -223,4 +223,5 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired
 };
 
-export default connect(null, { createProfile })(withRouter(createProfile));
+//export default connect(null, { createProfile })(withRouter(createProfile));
+export default connect(null, { createProfile })(withRouter(CreateProfile));
