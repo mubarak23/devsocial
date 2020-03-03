@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_PROFILE, PROFILE_ERROR, UPDATEPROFILE } from './types';
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
 
 export const getCurrentProfile = () => async dispatch => {
   try {
@@ -58,7 +58,7 @@ export const addexperience = (formData, history) => async dispatch => {
     };
     const res = await axios.post('/api/profile/experience', formData, config);
     dispatch({
-      type: UPDATEPROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data
     });
     dispatch(setAlert('Experience Added'));
@@ -84,7 +84,7 @@ export const addEducation = (formData, history) => async dispatch => {
     };
     const res = await axios.post('/api/profile/education', formData, config);
     dispatch({
-      type: UPDATEPROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data
     });
 
