@@ -55,7 +55,7 @@ export const createProfile = (
   }
 };
 
-export const addexperience = (formData, history) => async dispatch => {
+export const addExperience = (formData, history) => async dispatch => {
   try {
     const config = {
       headers: {
