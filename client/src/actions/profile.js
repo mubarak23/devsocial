@@ -34,7 +34,11 @@ export const createProfile = (
         'Content-type': 'Application/json'
       }
     };
-    const res = await axios.post('/api/profile', formData, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile',
+      formData,
+      config
+    );
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -62,7 +66,11 @@ export const addExperience = (formData, history) => async dispatch => {
         'Content-type': 'Application/json'
       }
     };
-    const res = await axios.post('/api/profile/experience', formData, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/experience',
+      formData,
+      config
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
@@ -88,7 +96,11 @@ export const addEducation = (formData, history) => async dispatch => {
         'Content-type': 'Application/json'
       }
     };
-    const res = await axios.post('/api/profile/education', formData, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/education',
+      formData,
+      config
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
@@ -109,7 +121,9 @@ export const addEducation = (formData, history) => async dispatch => {
 
 export const deleteExperience = id => async dispatch => {
   try {
-    const res = await axios.delete(`/api/profile/experience/${id}`);
+    const res = await axios.delete(
+      `http://localhost:5000/api/profile/experience/${id}`
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
@@ -144,7 +158,7 @@ export const deleteEducation = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure ? This Cannot be Revert !')) {
     try {
-      const res = axios.delete('/api/profile');
+      const res = axios.delete('http://localhost:5000/api/profile');
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETE });
       dispatch(setAlert('Your Account has been Permanntly deleted'));
