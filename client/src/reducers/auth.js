@@ -40,7 +40,7 @@ export default function(state = initialState, action) {
     case LOGIN_FAIL:
     case LOGOUT:
     case ACCOUNT_DELETE:
-      console.log('this is just a check of login fail');
+      //console.log('this is just a check of login fail');
       localStorage.removeItem('token');
       return {
         ...state,
