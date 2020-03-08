@@ -10,13 +10,20 @@ import {
 
 export const getCurrentProfile = () => async dispatch => {
   try {
-    const res = await axios.get('http://localhost:5000/api/profile/me');
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const res = await axios.get('http://localhost:5000/api/profile/me', config);
+    console.log(res);
 
     dispatch({
       type: GET_PROFILE,
       payload: res.data
     });
   } catch (err) {
+    console.log(err);
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }

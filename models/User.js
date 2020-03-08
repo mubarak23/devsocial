@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,5 +22,5 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-//UserSchema.plugin(uniqueValidator);
-module.exports = mongoose.model('User', UserSchema);
+
+module.exports = User = mongoose.model('user', UserSchema);
