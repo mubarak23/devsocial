@@ -113,8 +113,8 @@ router.post(
       await profile.save();
       res.json(profile);
     } catch (err) {
+      res.status(500).send('Server Error');
       console.error(err.message);
-      return res.status(500).send('Server Error');
     }
   }
 );

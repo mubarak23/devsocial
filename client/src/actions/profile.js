@@ -44,11 +44,7 @@ export const createProfile = (
       }
     };
 
-    const res = await axios.post(
-      'http://localhost:5000/api/profile',
-      formData,
-      config
-    );
+    const res = await axios.post('/api/profile', formData, config);
 
     dispatch({
       type: GET_PROFILE,
