@@ -171,7 +171,7 @@ export const deleteEducation = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure ? This Cannot be Revert !')) {
     try {
-      const res = axios.delete('http://localhost:5000/api/profile');
+      await axios.delete('http://localhost:5000/api/profile');
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETE });
       dispatch(setAlert('Your Account has been Permanntly deleted'));
