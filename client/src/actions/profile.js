@@ -112,7 +112,7 @@ export const addEducation = (formData, history) => async dispatch => {
         'Content-type': 'Application/json'
       }
     };
-    const res = await axios.post(
+    const res = await axios.put(
       'http://localhost:5000/api/profiles/education',
       formData,
       config
