@@ -17,7 +17,10 @@ export const getCurrentProfile = () => async dispatch => {
         'Content-Type': 'application/json'
       }
     };
-    const res = await axios.get('http://localhost:5000/api/profile/me', config);
+    const res = await axios.get(
+      'http://localhost:5000/api/profiles/me',
+      config
+    );
     console.log(res);
 
     dispatch({
@@ -80,7 +83,7 @@ export const addExperience = (formData, history) => async dispatch => {
       }
     };
     const res = await axios.post(
-      'http://localhost:5000/api/profile/experience',
+      'http://localhost:5000/api/profiles/experience',
       formData,
       config
     );
@@ -110,7 +113,7 @@ export const addEducation = (formData, history) => async dispatch => {
       }
     };
     const res = await axios.post(
-      'http://localhost:5000/api/profile/education',
+      'http://localhost:5000/api/profiles/education',
       formData,
       config
     );
@@ -135,7 +138,7 @@ export const addEducation = (formData, history) => async dispatch => {
 export const deleteExperience = id => async dispatch => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/api/profile/experience/${id}`
+      `http://localhost:5000/api/profiles/experience/${id}`
     );
     dispatch({
       type: UPDATE_PROFILE,
@@ -153,7 +156,7 @@ export const deleteExperience = id => async dispatch => {
 
 export const deleteEducation = id => async dispatch => {
   try {
-    const res = await axios.delete(`/api/profile/education/${id}`);
+    const res = await axios.delete(`/api/profiles/education/${id}`);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
