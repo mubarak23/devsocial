@@ -185,11 +185,11 @@ export const deleteAccount = () => async dispatch => {
 };
 
 //get all profile
-export const getProfile = () => async dispatch => {
+export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await axios.get('/api/profiles');
+    const res = await axios.get('http://localhost:5000/api/profiles');
 
     dispatch({
       type: GET_PROFILES,
