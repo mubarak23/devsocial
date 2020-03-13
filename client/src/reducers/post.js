@@ -3,7 +3,8 @@ import {
   POST_ERROR,
   UPDATE_LIKES,
   DELETE_POST,
-  Add_POST
+  Add_POST,
+  GET_POST
 } from '../actions/types';
 const initiateState = {
   posts: [],
@@ -46,6 +47,12 @@ export default function(state = initiateState, action) {
       return {
         ...state,
         posts: [payload, ...state.posts],
+        loading: false
+      };
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
         loading: false
       };
     default:
