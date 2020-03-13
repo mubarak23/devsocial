@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/spinner';
 import PostItem from '../posts/PostItem';
-import CommentForm from '../posts/CommentForm';
+import CommentForm from './commentForm';
+import CoomentItem from './commentItem';
 import { getPost } from '../../actions/post';
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
@@ -20,6 +21,11 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       </Link>
       <PostItem post={post} showAction={false} />
       <CommentForm postId={post._id} />
+      <div className='comments'>
+        {post.comment.map(comment => (
+          <CoomentItem key={comment._id} comment={comment} post={post._id} />
+        ))}
+      </div>
     </Fragment>
   );
 };
