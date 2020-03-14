@@ -6,7 +6,7 @@ import { deleteEducation } from '../../actions/profile';
 
 const Education = ({ education, deleteEducation }) => {
   const educations = education.map(edu => (
-    <tr key={edu.key}>
+    <tr key={edu._id}>
       <td>{edu.school}</td>
       <td>
         <Moment format='YYYY/MM/DD'>{edu.from}</Moment> -{' '}
