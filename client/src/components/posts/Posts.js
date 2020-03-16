@@ -10,6 +10,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
+
   return loading ? (
     <Spinner />
   ) : (
@@ -18,8 +19,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <p className='lead'>
         <i className='fas fa-user' /> Welcome to the community
       </p>
-      {PostForm}
-      <div className='posts'>
+      <PostForm />
+      <div className='possts'>
         {posts.map(post => (
           <PostItem key={post._id} post={post} />
         ))}
