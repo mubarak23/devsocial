@@ -227,13 +227,16 @@ export const getProfileById = userId => async dispatch => {
 //get githhub repo
 export const getGithubRepos = username => async dispatch => {
   try {
-    const res = await axios.get(`api/profile/github/${username}`);
-
+    const res = await axios.get(
+      `http://localhost:5000/api/profiles/github/${username}`
+    );
+    console.log(res);
     dispatch({
       type: GET_REPOS,
       dispatch: res.data
     });
   } catch (err) {
+    console.log(err);
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
