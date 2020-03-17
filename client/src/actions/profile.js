@@ -17,10 +17,7 @@ export const getCurrentProfile = () => async dispatch => {
         'Content-Type': 'application/json'
       }
     };
-    const res = await axios.get(
-      'http://localhost:5000/api/profiles/me',
-      config
-    );
+    const res = await axios.get('/api/profiles/me', config);
     console.log(res);
 
     dispatch({
@@ -82,11 +79,7 @@ export const addExperience = (formData, history) => async dispatch => {
         'Content-type': 'Application/json'
       }
     };
-    const res = await axios.put(
-      'http://localhost:5000/api/profiles/experience',
-      formData,
-      config
-    );
+    const res = await axios.put('/api/profiles/experience', formData, config);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
@@ -112,11 +105,7 @@ export const addEducation = (formData, history) => async dispatch => {
         'Content-type': 'Application/json'
       }
     };
-    const res = await axios.put(
-      'http://localhost:5000/api/profiles/education',
-      formData,
-      config
-    );
+    const res = await axios.put('/api/profiles/education', formData, config);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
@@ -137,9 +126,7 @@ export const addEducation = (formData, history) => async dispatch => {
 
 export const deleteExperience = id => async dispatch => {
   try {
-    const res = await axios.delete(
-      `http://localhost:5000/api/profiles/experience/${id}`
-    );
+    const res = await axios.delete(`/api/profiles/experience/${id}`);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
@@ -174,7 +161,7 @@ export const deleteEducation = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure ? This Cannot be Revert !')) {
     try {
-      await axios.delete('http://localhost:5000/api/profile');
+      await axios.delete('/api/profile');
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETE });
       dispatch(setAlert('Your Account has been Permanntly deleted'));
@@ -192,7 +179,7 @@ export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await axios.get('http://localhost:5000/api/profiles');
+    const res = await axios.get('/api/profiles');
 
     dispatch({
       type: GET_PROFILES,
@@ -209,9 +196,7 @@ export const getProfiles = () => async dispatch => {
 //get profile by id
 export const getProfileById = userId => async dispatch => {
   try {
-    const res = await axios.get(
-      `http://localhost:5000/api/profiles/user/${userId}`
-    );
+    const res = await axios.get(`/api/profiles/user/${userId}`);
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -227,9 +212,7 @@ export const getProfileById = userId => async dispatch => {
 //get githhub repo
 export const getGithubRepos = username => async dispatch => {
   try {
-    const res = await axios.get(
-      `http://localhost:5000/api/profiles/github/${username}`
-    );
+    const res = await axios.get(`/api/profiles/github/${username}`);
     console.log(res);
     dispatch({
       type: GET_REPOS,
