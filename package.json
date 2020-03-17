@@ -1,6 +1,10 @@
 {
   "name": "devsocial",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.16.x",
+    "npm": "6.x"
+  },
   "description": "dev connect platform",
   "scripts": {
     "start": "nodemon server.js",
